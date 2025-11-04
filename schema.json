@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "PDFExtractionOutput",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "filename": { "type": "string" },
+        "pages": { "type": "integer" }
+      },
+      "required": ["filename", "pages"]
+    },
+    "text": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer" },
+          "text": { "type": "string" },
+          "fonts": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          }
+        },
+        "required": ["page", "text", "fonts"]
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer" },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "required": ["page", "data"]
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer" },
+          "path": { "type": "string" },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "width": { "type": "integer" },
+              "height": { "type": "integer" }
+            },
+            "required": ["width", "height"]
+          }
+        },
+        "required": ["page", "path", "dimensions"]
+      }
+    }
+  },
+  "required": ["metadata", "text", "tables", "images"],
+  "additionalProperties": false
+}
