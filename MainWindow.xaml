@@ -1,0 +1,251 @@
+<!--
+  PDF to Word Converter
+  Developed by: Khomotso Jonathan Gole
+  Contact: 0783672051 / 0795886717
+  Email: khomotsojonathan2@gmail.com
+  LinkedIn: https://www.linkedin.com/in/khomotso-jonathan-gole
+  GitHub: https://github.com/Khomotso-Jonathan-Gole
+  
+  Copyright (c) 2025 Khomotso Jonathan Gole. All rights reserved.
+  Licensed under the MIT License.
+-->
+
+<Window x:Class="PdfToWordConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PDF to Word Converter" Height="550" Width="750"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F8FF">
+
+    <Window.Resources>
+        <!-- Button Styles -->
+        <Style x:Key="BlueButton" TargetType="Button">
+            <Setter Property="Background" Value="#1E3A8A"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="RedButton" TargetType="Button">
+            <Setter Property="Background" Value="#DC2626"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- TextBox Style -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#1E3A8A"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- Footer Text Style -->
+        <Style x:Key="FooterText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header with Solid Color -->
+        <Border Grid.Row="0" Background="#1E3A8A" CornerRadius="10" Padding="25" Margin="0,0,0,20">
+            <StackPanel>
+                <TextBlock Text="PDF to Word Converter"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Convert your PDF documents to editable Word files"
+                           FontSize="14"
+                           Foreground="#E5E7EB"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- File Selection Section -->
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="25" Margin="0,0,0,15"
+                BorderBrush="#E5E7EB" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="Select PDF File:"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="#1E3A8A"
+                           Margin="0,0,0,15"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="btnBrowse"
+                            Content="📁 Browse PDF"
+                            Click="BtnBrowse_Click"
+                            Style="{StaticResource BlueButton}"
+                            Height="40"
+                            Width="140"
+                            Margin="0,0,15,0"
+                            FontSize="13"/>
+
+                    <TextBox x:Name="txtFilePath"
+                             Height="40"
+                             Width="400"
+                             IsReadOnly="True"
+                             VerticalContentAlignment="Center"
+                             FontSize="13"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Convert Button Section -->
+        <Border Grid.Row="2" Background="White" CornerRadius="8" Padding="25" Margin="0,0,0,15"
+                BorderBrush="#E5E7EB" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="Ready to Convert?"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="#DC2626"
+                           Margin="0,0,0,15"
+                           HorizontalAlignment="Center"/>
+
+                <Button x:Name="btnConvert"
+                        Content="🔄 Convert to Word Document"
+                        Click="BtnConvert_Click"
+                        Style="{StaticResource RedButton}"
+                        Height="50"
+                        FontSize="16"
+                        HorizontalAlignment="Center"
+                        Width="280"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Status/Info Area -->
+        <Border Grid.Row="3" Background="#EFF6FF" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+            <TextBlock Text="✨ Your PDF will be converted to a fully editable Word document while preserving formatting, images, and layout."
+                       FontSize="13"
+                       Foreground="#475569"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+        </Border>
+
+           <!-- Footer - Horizontal Layout with Clickable Links -->
+        <Border Grid.Row="4" Background="#DC2626" CornerRadius="8" Padding="15" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <!-- Developer Name -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Developer"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Khomotso Jonathan Gole"
+                               Foreground="White"
+                               FontSize="11"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Separator -->
+                <Rectangle Width="1" Height="40" Fill="White" Margin="0,0,20,0" Opacity="0.6"/>
+
+                <!-- Contact -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Contact"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="0783672051"
+                               Foreground="White"
+                               FontSize="11"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="0795886717"
+                               Foreground="White"
+                               FontSize="11"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Separator -->
+                <Rectangle Width="1" Height="40" Fill="White" Margin="0,0,20,0" Opacity="0.6"/>
+
+                <!-- Email -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Email"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="khomotsojonathan2@gmail.com"
+                               Foreground="White"
+                               FontSize="11"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Separator -->
+                <Rectangle Width="1" Height="40" Fill="White" Margin="0,0,20,0" Opacity="0.6"/>
+
+                <!-- LinkedIn -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="LinkedIn"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Connect with me"
+                               Foreground="White"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,2"/>
+                    <TextBlock Text="www.linkedin.com/in/khomotso-jonathan-gole"
+                               Foreground="White"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               TextDecorations="Underline"
+                               Cursor="Hand"
+                               MouseLeftButtonDown="LinkedIn_Click"/>
+                </StackPanel>
+
+                <!-- Separator -->
+                <Rectangle Width="1" Height="40" Fill="White" Margin="0,0,20,0" Opacity="0.6"/>
+
+                <!-- GitHub -->
+                <StackPanel Margin="0,0,0,0">
+                    <TextBlock Text="GitHub"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="View my projects"
+                               Foreground="White"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,2"/>
+                    <TextBlock Text="github.com/Khomotso-Jonathan-Gole"
+                               Foreground="White"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               TextDecorations="Underline"
+                               Cursor="Hand"
+                               MouseLeftButtonDown="GitHub_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+
